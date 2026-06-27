@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NairoBytes — Device Financing Infrastructure for Africa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #1D9E75;
+    --green-dark: #0F6E56;
+    --green-deep: #085041;
+    --green-light: #E1F5EE;
+    --green-mid: #9FE1CB;
+    --ink: #0A0F0D;
+    --ink-soft: #1A2420;
+    --white: #FFFFFF;
+    --off-white: #F7FAF9;
+    --muted: #6B7C77;
+    --border: rgba(29,158,117,0.15);
+    --border-light: rgba(255,255,255,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,15,13,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--border-light);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 32px; height: 32px;
+    background: var(--green);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .nav-logo-text {
+    font-size: 16px; font-weight: 600;
+    color: var(--white);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-text span { color: var(--green); }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    display: flex; gap: 12px; align-items: center;
+  }
+  .btn-ghost {
+    padding: 8px 18px;
+    border: 0.5px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 13px; font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-family: inherit;
+    cursor: pointer;
+    background: transparent;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); }
+  .btn-primary {
+    padding: 8px 20px;
+    background: var(--green);
+    border: none;
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 13px; font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-primary:hover { background: var(--green-dark); }
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--white); border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: flex; align-items: center;
+    padding: 100px 2rem 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(29,158,117,0.18) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    border-radius: 50%;
+  }
+  .hero-glow-2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(29,158,117,0.08) 0%, transparent 70%);
+    bottom: 0; left: -80px;
+    border-radius: 50%;
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(29,158,117,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29,158,117,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(29,158,117,0.12);
+    border: 0.5px solid rgba(29,158,117,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px; font-weight: 500;
+    color: var(--green-mid);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.3px;
+  }
+  .hero-eyebrow-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--green);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 460px;
+    font-weight: 300;
+  }
+  .hero-actions {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .btn-hero {
+    padding: 13px 28px;
+    background: var(--green);
+    border: none; border-radius: 10px;
+    color: var(--white);
+    font-size: 15px; font-weight: 500;
+    font-family: inherit; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-hero:hover { background: var(--green-dark); transform: translateY(-1px); }
+  .btn-hero-ghost {
+    padding: 13px 28px;
+    background: transparent;
+    border: 0.5px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 15px; font-weight: 400;
+    font-family: inherit; cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-hero-ghost:hover { background: rgba(255,255,255,0.06); }
+  .hero-trust {
+    display: flex; align-items: center; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hero-trust-label {
+    font-size: 12px; color: rgba(255,255,255,0.35);
+    font-weight: 400;
+  }
+  .hero-trust-chips {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .trust-chip {
+    padding: 4px 12px;
+    background: rgba(255,255,255,0.05);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    font-size: 11px; color: rgba(255,255,255,0.5);
+  }
+
+  /* hero phone mockup */
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+  }
+  .phone-frame {
+    width: 240px;
+    background: #111;
+    border-radius: 36px;
+    border: 2px solid rgba(255,255,255,0.1);
+    padding: 12px;
+    position: relative;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+  }
+  .phone-notch {
+    width: 80px; height: 8px;
+    background: #000;
+    border-radius: 8px;
+    margin: 0 auto 10px;
+  }
+  .phone-screen {
+    background: #0A0F0D;
+    border-radius: 24px;
+    padding: 1rem;
+    min-height: 420px;
+    overflow: hidden;
+  }
+  .phone-status {
+    display: flex; justify-content: space-between;
+    font-size: 9px; color: rgba(255,255,255,0.4);
+    margin-bottom: 1rem;
+  }
+  .lock-screen {
+    text-align: center; padding: 1rem 0;
+  }
+  .lock-icon {
+    width: 48px; height: 48px;
+    background: rgba(29,158,117,0.15);
+    border: 1.5px solid var(--green);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 22px;
+  }
+  .lock-title {
+    font-size: 13px; font-weight: 600; color: var(--white);
+    margin-bottom: 4px;
+  }
+  .lock-sub {
+    font-size: 10px; color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .lock-amount {
+    font-size: 28px; font-weight: 600;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .lock-due {
+    font-size: 9px; color: rgba(255,255,255,0.35);
+    margin-bottom: 16px;
+  }
+  .lock-btn {
+    width: 100%; padding: 10px;
+    background: var(--green);
+    border: none; border-radius: 8px;
+    color: var(--white);
+    font-size: 11px; font-weight: 500;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .lock-btn-ghost {
+    width: 100%; padding: 10px;
+    background: transparent;
+    border: 0.5px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .phone-divider {
+    height: 0.5px; background: rgba(255,255,255,0.06);
+    margin: 12px 0;
+  }
+  .activity-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 0;
+  }
+  .activity-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .activity-text { font-size: 9px; color: rgba(255,255,255,0.35); flex: 1; }
+  .activity-time { font-size: 9px; color: rgba(255,255,255,0.2); }
+  .phone-badge {
+    position: absolute;
+    right: -20px; top: 60px;
+    background: var(--green);
+    color: var(--white);
+    font-size: 10px; font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(29,158,117,0.4);
+  }
+  .phone-badge-2 {
+    position: absolute;
+    left: -30px; bottom: 80px;
+    background: var(--ink-soft);
+    border: 0.5px solid rgba(29,158,117,0.3);
+    color: rgba(255,255,255,0.7);
+    font-size: 10px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+
+  /* ── STATS TICKER ── */
+  .stats-bar {
+    background: var(--ink-soft);
+    border-top: 0.5px solid rgba(29,158,117,0.15);
+    border-bottom: 0.5px solid rgba(29,158,117,0.15);
+    padding: 1.5rem 2rem;
+  }
+  .stats-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .stat-item {
+    text-align: center;
+    padding: 0.5rem;
+    border-right: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-size: 28px; font-weight: 600;
+    color: var(--green);
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 12px; color: rgba(255,255,255,0.4);
+    font-weight: 300;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 600;
+    letter-spacing: -1px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 16px; color: var(--muted);
+    line-height: 1.7; font-weight: 300;
+    max-width: 560px;
+  }
+
+  /* ── PRODUCTS ── */
+  .products { background: var(--off-white); }
+  .products-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .product-card {
+    background: var(--white);
+    border: 0.5px solid #E8EDE9;
+    border-radius: 16px;
+    padding: 2rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--green);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+    transform-origin: left;
+  }
+  .product-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .product-card:hover::before { transform: scaleX(1); }
+  .product-card.featured {
+    border-color: var(--green);
+    background: linear-gradient(135deg, #F0FBF7, var(--white));
+  }
+  .product-card.featured::before { transform: scaleX(1); }
+  .product-icon {
+    width: 44px; height: 44px;
+    background: var(--green-light);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 1.25rem;
+  }
+  .product-tag {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    font-size: 10px; font-weight: 500;
+    padding: 3px 10px; border-radius: 20px;
+    background: var(--green-light);
+    color: var(--green-deep);
+  }
+  .product-name {
+    font-size: 18px; font-weight: 600;
+    color: var(--ink); margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  .product-desc {
+    font-size: 14px; color: var(--muted);
+    line-height: 1.65; margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .product-features { list-style: none; }
+  .product-features li {
+    font-size: 13px; color: var(--ink);
+    padding: 5px 0;
+    display: flex; gap: 8px; align-items: flex-start;
+    border-bottom: 0.5px solid #F0F3F1;
+  }
+  .product-features li:last-child { border-bottom: none; }
+  .product-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 600; font-size: 12px;
+    margin-top: 1px; flex-shrink: 0;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .steps { margin-top: 2rem; }
+  .step {
+    display: flex; gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 0.5px solid #EEF2EF;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--green-light);
+    color: var(--green-deep);
+    font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-title {
+    font-size: 15px; font-weight: 500;
+    color: var(--ink); margin-bottom: 4px;
+  }
+  .step-desc {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.6; font-weight: 300;
+  }
+  .unlock-visual {
+    background: var(--ink);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .unlock-visual::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(29,158,117,0.15) 0%, transparent 70%);
+    top: -80px; right: -80px; border-radius: 50%;
+  }
+  .unlock-label {
+    font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--green); margin-bottom: 1.5rem;
+  }
+  .unlock-flow { position: relative; z-index: 1; }
+  .unlock-step {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0;
+    border-bottom: 0.5px solid rgba(255,255,255,0.05);
+  }
+  .unlock-step:last-child { border-bottom: none; }
+  .unlock-step-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: rgba(29,158,117,0.1);
+    border: 0.5px solid rgba(29,158,117,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+  }
+  .unlock-step-title {
+    font-size: 12px; font-weight: 500; color: var(--white);
+    margin-bottom: 2px;
+  }
+  .unlock-step-desc {
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+  .unlock-time {
+    font-size: 36px; font-weight: 600;
+    color: var(--green); text-align: center;
+    margin-top: 1.5rem; padding-top: 1.5rem;
+    border-top: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .unlock-time-label {
+    font-size: 12px; color: rgba(255,255,255,0.35);
+    text-align: center; margin-top: 4px;
+  }
+
+  /* ── SECURITY ── */
+  .security { background: var(--ink); }
+  .security .section-title { color: var(--white); }
+  .security .section-sub { color: rgba(255,255,255,0.45); }
+  .security .section-eyebrow { color: var(--green-mid); }
+  .security-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid rgba(255,255,255,0.04);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+  .security-item {
+    padding: 2rem;
+    background: var(--ink);
+    transition: background 0.2s;
+  }
+  .security-item:hover { background: var(--ink-soft); }
+  .security-item-icon {
+    font-size: 24px; margin-bottom: 1rem;
+  }
+  .security-item-title {
+    font-size: 15px; font-weight: 500;
+    color: var(--white); margin-bottom: 6px;
+  }
+  .security-item-desc {
+    font-size: 13px; color: rgba(255,255,255,0.4);
+    line-height: 1.6; font-weight: 300;
+  }
+
+  /* ── WHO WE SERVE ── */
+  .clients-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; margin-top: 3rem;
+  }
+  .client-card {
+    border: 0.5px solid #E8EDE9;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .client-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 4px 20px rgba(29,158,117,0.08);
+  }
+  .client-icon { font-size: 28px; margin-bottom: 10px; }
+  .client-name {
+    font-size: 14px; font-weight: 500;
+    color: var(--ink); margin-bottom: 6px;
+  }
+  .client-desc {
+    font-size: 12px; color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── TECH STACK ── */
+  .tech { background: var(--off-white); }
+  .tech-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1rem; margin-top: 3rem;
+  }
+  .tech-item {
+    background: var(--white);
+    border: 0.5px solid #E8EDE9;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .tech-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--green-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .tech-name {
+    font-size: 14px; font-weight: 500;
+    color: var(--ink); margin-bottom: 3px;
+  }
+  .tech-role {
+    font-size: 12px; color: var(--muted);
+    line-height: 1.5; font-weight: 300;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--ink);
+    text-align: center;
+  }
+  .cta-section .section-title { color: var(--white); }
+  .cta-section .section-sub {
+    color: rgba(255,255,255,0.45);
+    margin: 0 auto 2.5rem;
+  }
+  .cta-form {
+    display: flex; gap: 10px; justify-content: center;
+    flex-wrap: wrap; max-width: 480px; margin: 0 auto;
+  }
+  .cta-input {
+    flex: 1; min-width: 220px;
+    padding: 13px 18px;
+    background: rgba(255,255,255,0.06);
+    border: 0.5px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 14px; font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .cta-input::placeholder { color: rgba(255,255,255,0.3); }
+  .cta-input:focus { border-color: var(--green); }
+  .cta-note {
+    font-size: 12px; color: rgba(255,255,255,0.3);
+    margin-top: 1rem;
+  }
+  .cta-alts {
+    display: flex; justify-content: center; gap: 2rem;
+    margin-top: 2.5rem; flex-wrap: wrap;
+  }
+  .cta-alt {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .cta-alt:hover { color: var(--white); }
+  .cta-alt-icon { font-size: 16px; }
+
+  /* ── PARTNERS ── */
+  .partners {
+    padding: 3rem 2rem;
+    border-top: 0.5px solid #EEF2EF;
+    text-align: center;
+  }
+  .partners-label {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--muted);
+    margin-bottom: 1.5rem; font-weight: 500;
+  }
+  .partner-logos {
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 1rem;
+  }
+  .partner-logo {
+    padding: 8px 20px;
+    background: var(--off-white);
+    border: 0.5px solid #E8EDE9;
+    border-radius: 8px;
+    font-size: 13px; font-weight: 500;
+    color: var(--muted);
+    letter-spacing: -0.2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 3rem 2rem 2rem;
+    border-top: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; padding-bottom: 2rem;
+    border-bottom: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .footer-brand-desc {
+    font-size: 13px; color: rgba(255,255,255,0.35);
+    line-height: 1.7; margin-top: 12px; font-weight: 300;
+  }
+  .footer-col-title {
+    font-size: 12px; font-weight: 500;
+    color: var(--white); margin-bottom: 1rem;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 8px; }
+  .footer-links a {
+    font-size: 13px; color: rgba(255,255,255,0.4);
+    text-decoration: none; transition: color 0.2s;
+    font-weight: 300;
+  }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    max-width: 1100px; margin: 1.5rem auto 0;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy {
+    font-size: 12px; color: rgba(255,255,255,0.25);
+  }
+  .footer-copy a { color: var(--green); text-decoration: none; }
+  .footer-legal {
+    display: flex; gap: 1.5rem;
+  }
+  .footer-legal a {
+    font-size: 12px; color: rgba(255,255,255,0.25);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-visual { display: none; }
+    .products-grid { grid-template-columns: 1fr; }
+    .how-inner { grid-template-columns: 1fr; }
+    .clients-grid { grid-template-columns: repeat(2, 1fr); }
+    .security-grid { grid-template-columns: 1fr; }
+    .tech-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 3rem 1.25rem; }
+    .clients-grid { grid-template-columns: 1fr 1fr; }
+    .tech-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { border-right: none; border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+  }
+
+  /* mobile nav open */
+  nav.open .nav-links {
+    display: flex; flex-direction: column;
+    position: fixed; top: 64px; left: 0; right: 0;
+    background: rgba(10,15,13,0.98);
+    padding: 1.5rem 2rem 2rem;
+    gap: 1rem;
+    border-bottom: 0.5px solid var(--border-light);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🔐</div>
+    <span class="nav-logo-text">Nairo<span>Bytes</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#clients">Who we serve</a></li>
+    <li><a href="#tech">Technology</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="mailto:nairobytes@gmail.com" class="btn-ghost">Contact us</a>
+    <a href="#demo" class="btn-primary">Book a demo</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-grid-lines"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+  </div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Built for East Africa · Nairobi, Kenya
+      </div>
+      <h1>Device financing<br>infrastructure for<br><em>Africa's next billion</em></h1>
+      <p class="hero-sub">Enterprise-grade PAYG locking, billing, and fleet management for smartphones and IoT devices. M-Pesa native. SMS-first. Deployable from day one.</p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn-hero">Book a demo</a>
+        <a href="#products" class="btn-hero-ghost">Explore products</a>
+      </div>
+      <div class="hero-trust">
+        <span class="hero-trust-label">Works with</span>
+        <div class="hero-trust-chips">
+          <span class="trust-chip">Samsung</span>
+          <span class="trust-chip">Tecno</span>
+          <span class="trust-chip">Infinix</span>
+          <span class="trust-chip">Itel</span>
+          <span class="trust-chip">M-Pesa</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div style="position:relative;">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-status">
+              <span>9:41</span>
+              <span>●●● 📶 🔋</span>
+            </div>
+            <div class="lock-screen">
+              <div class="lock-icon">🔒</div>
+              <div class="lock-title">Payment Required</div>
+              <div class="lock-sub">Your weekly payment<br>is due to continue using this device</div>
+              <div class="lock-amount">KES 350</div>
+              <div class="lock-due">Due today · Grace period ends in 2hrs</div>
+              <button class="lock-btn">Pay via M-Pesa</button>
+              <button class="lock-btn-ghost">Enter unlock code</button>
+            </div>
+            <div class="phone-divider"></div>
+            <div class="activity-row">
+              <div class="activity-dot" style="background:#1D9E75;"></div>
+              <span class="activity-text">Payment KES 350 received</span>
+              <span class="activity-time">2d ago</span>
+            </div>
+            <div class="activity-row">
+              <div class="activity-dot" style="background:#1D9E75;"></div>
+              <span class="activity-text">Device unlocked via M-Pesa</span>
+              <span class="activity-time">2d ago</span>
+            </div>
+            <div class="activity-row">
+              <div class="activity-dot" style="background:#F0995B;"></div>
+              <span class="activity-text">Payment reminder sent</span>
+              <span class="activity-time">Today</span>
+            </div>
+          </div>
+        </div>
+        <div class="phone-badge">✓ Unlocked in 1.8s</div>
+        <div class="phone-badge-2">🔐 8-layer security</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">&lt;2s</div>
+      <div class="stat-label">Unlock on payment</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">8</div>
+      <div class="stat-label">Security layers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">99%</div>
+      <div class="stat-label">SMS coverage Kenya</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Product lines</div>
+    </div>
+  </div>
+</div>
+
+<!-- PARTNERS -->
+<div class="partners">
+  <div class="partners-label">Technology partners</div>
+  <div class="partner-logos">
+    <div class="partner-logo">M-Pesa Daraja</div>
+    <div class="partner-logo">Africa's Talking</div>
+    <div class="partner-logo">Firebase</div>
+    <div class="partner-logo">Safaricom</div>
+    <div class="partner-logo">Google Play Integrity</div>
+    <div class="partner-logo">Pixel Electric</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products" class="products">
+  <div class="section-inner">
+    <div class="section-eyebrow">Products</div>
+    <div class="section-title">Three products.<br>One backend.</div>
+    <p class="section-sub">Clients choose the deployment mode that fits their hardware. All three connect to the same cloud, admin dashboard, and billing engine.</p>
+    <div class="products-grid">
+      <div class="product-card featured">
+        <div class="product-tag">Core product</div>
+        <div class="product-icon">📱</div>
+        <div class="product-name">PhoneLock Pro</div>
+        <div class="product-desc">Software-only PAYG for Android smartphones. Pre-installed before sale. No manufacturer partnership required. Works on Samsung, Tecno, Infinix, and Itel running Android 14–16.</div>
+        <ul class="product-features">
+          <li>Overlay + Device Owner locking</li>
+          <li>Internet unlock via FCM in under 2 seconds</li>
+          <li>SMS HMAC offline unlock fallback</li>
+          <li>8-layer anti-bypass security</li>
+          <li>Composite hardware fingerprint binding</li>
+          <li>Factory reset protection</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-tag">IoT hardware</div>
+        <div class="product-icon">⚡</div>
+        <div class="product-name">SolarLock</div>
+        <div class="product-desc">GSM-enabled IoT control module for solar lights, torches, and home energy systems. A hardware relay physically cuts power on missed payment — impossible to bypass in software.</div>
+        <ul class="product-features">
+          <li>ESP32 + SIM800L GSM control unit</li>
+          <li>Hardware relay — physical power cutoff</li>
+          <li>SMS-triggered lock and unlock</li>
+          <li>Tamper-detection switch on enclosure</li>
+          <li>Energy usage tracking and reporting</li>
+          <li>Shared backend with PhoneLock Pro</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-tag">B2B platform</div>
+        <div class="product-icon">🏢</div>
+        <div class="product-name">FleetDesk</div>
+        <div class="product-desc">White-label admin dashboard and REST API for financial institutions, telcos, and device distributors managing PAYG fleets at scale. Deploy under your own brand.</div>
+        <ul class="product-features">
+          <li>Full white-label — your brand, your UI</li>
+          <li>Fleet view: lock status, heartbeat, payments</li>
+          <li>Manual lock/unlock with MFA gate</li>
+          <li>Bulk operations and CSV export</li>
+          <li>Agent portal for field sales teams</li>
+          <li>REST API for CRM/ERP integration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <div class="how-inner">
+      <div>
+        <div class="section-eyebrow">How it works</div>
+        <div class="section-title">Payment to unlock<br>in under 2 seconds</div>
+        <p class="section-sub">Our two-path unlock system ensures customers can always access their device after paying — whether they have internet or not.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-title">Customer pays via M-Pesa</div>
+              <div class="step-desc">Payment is made using any M-Pesa channel — STK push, Paybill, or USSD. No app required to initiate payment.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-title">Backend verifies payment</div>
+              <div class="step-desc">Safaricom's Daraja webhook hits our Cloud Function within milliseconds. Payment amount, reference, and registered number are all validated.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-title">Signed unlock command sent</div>
+              <div class="step-desc">An RS256-signed unlock command is pushed to the device via FCM. If the device is offline, an HMAC SMS code is sent to the registered number.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div>
+              <div class="step-title">Device verifies and unlocks</div>
+              <div class="step-desc">The app verifies the signature or validates the SMS code locally against the device IMEI. If valid, the device unlocks immediately — no server round-trip needed.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="unlock-visual">
+        <div class="unlock-label">Live unlock flow</div>
+        <div class="unlock-flow">
+          <div class="unlock-step">
+            <div class="unlock-step-icon">💳</div>
+            <div>
+              <div class="unlock-step-title">M-Pesa payment confirmed</div>
+              <div class="unlock-step-desc">Daraja webhook fires — 0ms</div>
+            </div>
+          </div>
+          <div class="unlock-step">
+            <div class="unlock-step-icon">☁️</div>
+            <div>
+              <div class="unlock-step-title">Cloud Function validates</div>
+              <div class="unlock-step-desc">Amount · reference · registered number — ~200ms</div>
+            </div>
+          </div>
+          <div class="unlock-step">
+            <div class="unlock-step-icon">📡</div>
+            <div>
+              <div class="unlock-step-title">FCM push dispatched</div>
+              <div class="unlock-step-desc">RS256-signed payload sent to device — ~400ms</div>
+            </div>
+          </div>
+          <div class="unlock-step">
+            <div class="unlock-step-icon">✅</div>
+            <div>
+              <div class="unlock-step-title">Device unlocked</div>
+              <div class="unlock-step-desc">Signature verified locally · lock removed — ~1.8s total</div>
+            </div>
+          </div>
+          <div class="unlock-step">
+            <div class="unlock-step-icon">💬</div>
+            <div>
+              <div class="unlock-step-title">SMS fallback (offline)</div>
+              <div class="unlock-step-desc">HMAC code · IMEI+ICCID bound · 2-hour window</div>
+            </div>
+          </div>
+        </div>
+        <div class="unlock-time">&lt;2s</div>
+        <div class="unlock-time-label">average internet unlock time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security" class="security">
+  <div class="section-inner">
+    <div class="section-eyebrow">Security</div>
+    <div class="section-title">Built to be unbypassed.</div>
+    <p class="section-sub">Every security layer assumes the one below it has been compromised. We engineer for customers who have physical access, root tools, and technical knowledge.</p>
+    <div class="security-grid">
+      <div class="security-item">
+        <div class="security-item-icon">🔑</div>
+        <div class="security-item-title">Composite hardware binding</div>
+        <div class="security-item-desc">IMEI + CPU silicon serial + SIM ICCID + baseband version fused into one HMAC fingerprint. Changing any single value triggers an immediate alert and lock.</div>
+      </div>
+      <div class="security-item">
+        <div class="security-item-icon">🛡️</div>
+        <div class="security-item-title">Play Integrity attestation</div>
+        <div class="security-item-desc">Device attestation runs on every heartbeat. Rooted, emulated, or custom-ROM devices automatically fail and are hard-locked — no admin action required.</div>
+      </div>
+      <div class="security-item">
+        <div class="security-item-icon">📜</div>
+        <div class="security-item-title">Signed unlock commands</div>
+        <div class="security-item-desc">FCM unlock payloads are RS256-signed. The app verifies the server's public key before applying any unlock. Replayed or forged commands are silently rejected.</div>
+      </div>
+      <div class="security-item">
+        <div class="security-item-icon">💬</div>
+        <div class="security-item-title">HMAC offline codes</div>
+        <div class="security-item-desc">SMS unlock codes are device-specific, time-windowed, and ICCID-bound. A stolen code cannot be used on a different device or outside the 2-hour validity window.</div>
+      </div>
+      <div class="security-item">
+        <div class="security-item-icon">🔬</div>
+        <div class="security-item-title">Runtime threat detection</div>
+        <div class="security-item-desc">Detects Frida, Xposed, Magisk, ADB, emulators, debuggers, and clock rollback attacks in real time. Any detection triggers immediate hard lock and a backend alert.</div>
+      </div>
+      <div class="security-item">
+        <div class="security-item-icon">🧱</div>
+        <div class="security-item-title">Hardware Keystore</div>
+        <div class="security-item-desc">All tokens stored in Android Keystore with StrongBox/TEE hardware binding. Keys are physically unextractable — immune to EMMC dump and cold boot attacks.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section id="clients">
+  <div class="section-inner">
+    <div class="section-eyebrow">Who we serve</div>
+    <div class="section-title">Built for every player<br>in device financing</div>
+    <p class="section-sub">From SACCOs distributing 50 phones a month to telcos managing hundreds of thousands of devices — FleetDesk scales with you.</p>
+    <div class="clients-grid">
+      <div class="client-card">
+        <div class="client-icon">🏦</div>
+        <div class="client-name">Microfinance institutions</div>
+        <div class="client-desc">Add device financing to your loan portfolio with automated enforcement and repayment tracking.</div>
+      </div>
+      <div class="client-card">
+        <div class="client-icon">📡</div>
+        <div class="client-name">Telcos & mobile operators</div>
+        <div class="client-desc">Run device subsidy programs like Lipa Mdogo Mdogo with enterprise-grade locking and M-Pesa integration.</div>
+      </div>
+      <div class="client-card">
+        <div class="client-icon">🏪</div>
+        <div class="client-name">Device distributors</div>
+        <div class="client-desc">Offer installment plans to your customers without building any infrastructure — we handle everything.</div>
+      </div>
+      <div class="client-card">
+        <div class="client-icon">🤝</div>
+        <div class="client-name">SACCOs & cooperatives</div>
+        <div class="client-desc">Enable member device financing with automatic enforcement tied directly to member accounts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech" class="tech">
+  <div class="section-inner">
+    <div class="section-eyebrow">Technology</div>
+    <div class="section-title">Built on infrastructure<br>Africa runs on</div>
+    <p class="section-sub">Every component chosen for reliability in low-connectivity, high-volume environments — from Nairobi's CBD to rural Kisumu.</p>
+    <div class="tech-grid">
+      <div class="tech-item">
+        <div class="tech-icon">📱</div>
+        <div>
+          <div class="tech-name">Native Kotlin — Android</div>
+          <div class="tech-role">Deep OS access for Accessibility Service, Device Owner, and hardware fingerprinting</div>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">🔥</div>
+        <div>
+          <div class="tech-name">Firebase + Cloud Functions</div>
+          <div class="tech-role">Firestore + FCM — real-time unlock pipeline, serverless billing logic</div>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">💬</div>
+        <div>
+          <div class="tech-name">Africa's Talking SMS</div>
+          <div class="tech-role">Dedicated shortcode, HMAC unlock codes, zero-internet fallback delivery</div>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">💚</div>
+        <div>
+          <div class="tech-name">M-Pesa Daraja API</div>
+          <div class="tech-role">Webhook-driven payment verification — triggers unlock in real time</div>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">⚡</div>
+        <div>
+          <div class="tech-name">ESP32 + SIM800L — IoT</div>
+          <div class="tech-role">GSM relay control unit for SolarLock — power cutoff, tamper detection, usage metering</div>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">📊</div>
+        <div>
+          <div class="tech-name">React — FleetDesk</div>
+          <div class="tech-role">Admin dashboard, agent portal, white-label ready, hosted on Firebase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / DEMO -->
+<section id="demo" class="cta-section">
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-eyebrow" style="color:var(--green-mid);">Get started</div>
+    <div class="section-title" style="color:var(--white); margin: 0 auto 1rem;">Ready to deploy PAYG<br>financing in Kenya?</div>
+    <p class="section-sub" style="margin:0 auto 2.5rem;">Tell us about your use case. We'll get back within one business day with a tailored proposal — no generic sales deck.</p>
+    <form class="cta-form" onsubmit="handleSubmit(event)">
+      <input type="email" class="cta-input" placeholder="Work email address" required id="email-input">
+      <button type="submit" class="btn-primary" style="padding: 13px 24px; font-size: 14px;">Book a demo →</button>
+    </form>
+    <p class="cta-note">No commitment required · Response within 1 business day</p>
+    <div class="cta-alts">
+      <a href="mailto:nairobytes@gmail.com" class="cta-alt">
+        <span class="cta-alt-icon">✉️</span> nairobytes@gmail.com
+      </a>
+      <a href="tel:+254794570888" class="cta-alt">
+        <span class="cta-alt-icon">📞</span> +254 794 570 888
+      </a>
+      <a href="https://www.nairobytes.co.ke" class="cta-alt" target="_blank">
+        <span class="cta-alt-icon">🌐</span> nairobytes.co.ke
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="#" class="nav-logo" style="text-decoration:none; display:inline-flex;">
+        <div class="nav-logo-icon">🔐</div>
+        <span class="nav-logo-text" style="color:var(--white);">Nairo<span style="color:var(--green);">Bytes</span></span>
+      </a>
+      <p class="footer-brand-desc">Device financing infrastructure for East Africa. M-Pesa native. SMS-first. Enterprise-grade security.<br><br>Red Commercial Complex, 1st Floor, Nairobi, Kenya.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Products</div>
+      <ul class="footer-links">
+        <li><a href="#products">PhoneLock Pro</a></li>
+        <li><a href="#products">SolarLock</a></li>
+        <li><a href="#products">FleetDesk</a></li>
+        <li><a href="#tech">Technology</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="https://www.nairobytes.co.ke" target="_blank">About NairoBytes</a></li>
+        <li><a href="https://promogpt.co.ke" target="_blank">PromoGPT</a></li>
+        <li><a href="https://vibe.co.ke" target="_blank">Vibe.co.ke</a></li>
+        <li><a href="mailto:nairobytes@gmail.com">Careers</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="mailto:nairobytes@gmail.com">nairobytes@gmail.com</a></li>
+        <li><a href="tel:+254794570888">+254 794 570 888</a></li>
+        <li><a href="#demo">Book a demo</a></li>
+        <li><a href="https://www.nairobytes.co.ke" target="_blank">nairobytes.co.ke</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 NairoBytes Ltd. Built in <a href="#">Nairobi, Kenya</a>.</div>
+    <div class="footer-legal">
+      <a href="#">Privacy policy</a>
+      <a href="#">Terms of service</a>
+      <a href="#">Kenya DPA compliance</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleNav() {
+    document.getElementById('main-nav').classList.toggle('open');
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('email-input').value;
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ Sent! We\'ll be in touch';
+    btn.style.background = '#085041';
+    btn.disabled = true;
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id === '#') return;
+      const el = document.querySelector(id);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('main-nav').classList.remove('open');
+      }
+    });
+  });
+
+  // Nav background on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('main-nav');
+    if (window.scrollY > 20) {
+      nav.style.background = 'rgba(10,15,13,0.98)';
+    } else {
+      nav.style.background = 'rgba(10,15,13,0.92)';
+    }
+  });
+</script>
+</body>
+</html>
